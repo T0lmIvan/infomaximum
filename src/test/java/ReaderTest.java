@@ -44,8 +44,8 @@ public class ReaderTest {
     @Test
     public void readFromCsv() throws IOException{
         Statistic statistic = new Statistic();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/out.csv"));
-        Reader.readFromCsv(bufferedReader, statistic);
+        File file = new File("src/test/resources/t.csv");
+        Reader.readFromCsv(file, statistic);
         long min = 166245166882415069l;
         long max = 7929600365256606300l;
         Map<String, BigInteger> mapSum= new HashMap<>(){{

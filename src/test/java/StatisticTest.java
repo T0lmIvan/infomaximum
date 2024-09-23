@@ -2,13 +2,10 @@ import org.example.Item;
 import org.example.Statistic;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.platform.commons.util.CollectionUtils;
 
 import java.math.BigInteger;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 public class StatisticTest {
     Statistic statistic = new Statistic();

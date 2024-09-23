@@ -28,8 +28,6 @@ public class Statistic {
 
         System.out.println("    Дубликаты объетов");
         System.out.printf("%-21s %-18s %s\n", "Группа", "Тип", "Количество");
-        mapDuplicatesItems.entrySet().forEach(entry -> System.out.println(entry.getKey() + " " + entry.getValue()));
-        System.out.println("==============================================================");
     }
 
     public void sumWeightByGroup(List<Item> items){
@@ -54,15 +52,13 @@ public class Statistic {
         }
     }
 
+
+
     public void duplicatesItems(List<Item> items){
-        Map<String, Long> map = items.stream()
-                .collect(Collectors.groupingBy(Item::grouping, Collectors.counting()));
-        for(String key : map.keySet()){
-            if(mapDuplicatesItems.containsKey(key)){
-                mapDuplicatesItems.put(key, mapDuplicatesItems.get(key) + map.get(key));
-            } else {
-                mapDuplicatesItems.put(key, map.get(key));
-            }
-        }
+        items.stream()
+                .collect(Collectors.groupingBy(Item::grouping, Collectors.counting()))
+                .entrySet().forEach(entry -> System.out.println(entry.getKey() + " " + entry.getValue()));
+        System.gc();
+
     }
 }

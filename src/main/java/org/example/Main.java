@@ -13,13 +13,13 @@ public class Main {
         while(!filePath.equals("Завершить работу")) {
             readFile(filePath);
             System.out.println("Введите путь до файла или завершите работу командой \"Завершить работу\"");
-                filePath = scanner.nextLine();
+            filePath = scanner.nextLine();
         }
         System.out.println("Программа завершена");
     }
 
     static public void readFile(String filePath){
-        try(BufferedReader fp = new BufferedReader(new FileReader(filePath))){
+        try{
             Statistic statistic = new Statistic();
             File file = new File(filePath);
             String fileName = file.getName();
@@ -36,16 +36,10 @@ public class Main {
             }
             switch (format){
                 case JSON -> Reader.readFromJson(file, statistic);
-                case CSV -> Reader.readFromCsv(fp, statistic);
-            }
-            if(statistic.mapDuplicatesItems.size() != 0){
-                statistic.outStatistic();
-            } else {
-                System.out.println("В файле отсутствуют данные!");
+                case CSV -> Reader.readFromCsv(file, statistic);
             }
         } catch (IOException e) {
             System.out.println("Не верно указан путь до файла!");
         }
     }
 }
-
